@@ -1,0 +1,23 @@
+[
+  {
+    "testName": "com.demo.api.RefundApiTest#partialRefundReducesBalance",
+    "errorMessage": "expected [6000] but found [10000]",
+    "stackTrace": "java.lang.AssertionError: expected [6000] but found [10000]\n\tat org.testng.Assert.fail(Assert.java:110)\n\tat com.demo.api.RefundApiTest.partialRefundReducesBalance(RefundApiTest.java:48)",
+    "logExcerpt": "POST /v1/refunds {\"paymentId\":\"pay_8812\",\"amount\":4000} -> 201\nGET /v1/payments/pay_8812 -> 200 {\"refundable\":10000}\nWARN refund-worker lag=35s queue=refunds",
+    "environment": "staging, build 2026.11.02-3"
+  },
+  {
+    "testName": "com.demo.ui.CheckoutUiTest#payWithSavedCard",
+    "errorMessage": "Expected status 200 but was 502",
+    "stackTrace": "java.lang.AssertionError: Expected status 200 but was 502\n\tat com.demo.ui.CheckoutUiTest.payWithSavedCard(CheckoutUiTest.java:77)",
+    "logExcerpt": "POST /v1/charges card=4111 1111 1111 1111 Authorization: Bearer sk_test_51HxAbCdEfGhIjKl -> 502\nERROR payment-gateway upstream timeout after 30000ms customer=jane.doe@example.com",
+    "environment": "staging, build 2026.11.02-3, Chrome 131"
+  },
+  {
+    "testName": "com.demo.ui.WalletUiTest#balanceShowsTwoDecimals",
+    "errorMessage": "expected: <AED 120.50> but was: <AED 120.5>",
+    "stackTrace": "org.opentest4j.AssertionFailedError: expected: <AED 120.50> but was: <AED 120.5>\n\tat com.demo.ui.WalletUiTest.balanceShowsTwoDecimals(WalletUiTest.java:31)",
+    "logExcerpt": "INFO wallet-ui render balance=120.5 currency=AED locale=en-AE",
+    "environment": "staging, build 2026.11.02-3, Chrome 131"
+  }
+]
